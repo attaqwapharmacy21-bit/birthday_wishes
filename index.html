@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birthday Wish Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="balloons" aria-hidden="true"></div>
+<button id="music" class="music" aria-pressed="false">🎵 Music</button>
+
+<main>
+  <!-- Screen 1: Welcome -->
+  <section id="welcome" class="screen active">
+    <svg class="gift" viewBox="0 0 120 120" width="130" height="130" aria-hidden="true">
+      <defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8fc7"/><stop offset="1" stop-color="#8f6bff"/></linearGradient></defs>
+      <rect x="18" y="50" width="84" height="58" rx="8" fill="url(#gg)"/>
+      <rect x="12" y="38" width="96" height="22" rx="8" fill="#b38cff"/>
+      <rect x="54" y="38" width="12" height="70" fill="#f4d58d"/>
+      <path d="M60 38C40 8 16 26 40 38ZM60 38C80 8 104 26 80 38Z" fill="none" stroke="#f4d58d" stroke-width="6" stroke-linejoin="round"/>
+    </svg>
+    <h1 id="title" class="reveal">Welcome to Birthday Wish Website</h1>
+    <p class="made">Made by Ruhan for You ❤️</p>
+    <p class="sub">Someone special deserves something extraordinary.</p>
+    <button id="openBtn" class="btn glow">Open Your Surprise 🎁</button>
+  </section>
+
+  <!-- Screen 2: Celebration -->
+  <section id="celebration" class="screen">
+    <article class="card" id="card">
+      <p id="todayBanner" class="banner" hidden>Today Is Your Special Day! 🎉</p>
+      <div class="frame">
+        <div id="initial"></div>
+        <img id="photo" alt="">
+      </div>
+      <p class="greet">Happy Birthday</p>
+      <h2 id="name"></h2>
+      <p id="dob" class="meta"></p>
+      <p id="age" class="age"></p>
+      <div id="countdown" class="countdown" hidden></div>
+
+      <svg id="cake" class="cake" viewBox="0 0 240 230" role="img" aria-label="Birthday cake with candles">
+        <defs>
+          <radialGradient id="fl" cx=".5" cy=".7"><stop offset="0" stop-color="#fff7c2"/><stop offset=".6" stop-color="#ffc247"/><stop offset="1" stop-color="#ff6a3d"/></radialGradient>
+          <linearGradient id="l1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ff9ccf"/><stop offset="1" stop-color="#e0559f"/></linearGradient>
+          <linearGradient id="l2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b794ff"/><stop offset="1" stop-color="#7a52e0"/></linearGradient>
+          <linearGradient id="l3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f1e8ff"/><stop offset="1" stop-color="#b9a2f5"/></linearGradient>
+        </defs>
+        <ellipse cx="120" cy="212" rx="108" ry="12" fill="#f4d58d"/>
+        <rect x="30" y="140" width="180" height="68" rx="12" fill="url(#l1)"/>
+        <rect x="55" y="100" width="130" height="46" rx="10" fill="url(#l2)"/>
+        <rect x="80" y="64" width="80" height="40" rx="9" fill="url(#l3)"/>
+        <g id="icing"></g><g id="sprinkles"></g><g id="candles"></g>
+      </svg>
+
+      <p id="message" class="msg"></p>
+      <p id="wishText" class="wish" aria-live="polite"></p>
+      <p id="secret" class="secret" hidden></p>
+      <div class="actions">
+        <button id="wishBtn" class="btn glow">Make a Wish ✨</button>
+        <button id="replayBtn" class="btn ghost">Replay Confetti 🎊</button>
+        <button id="secretBtn" class="btn ghost">Reveal Message 💌</button>
+        <button id="backBtn" class="btn ghost">← Back</button>
+      </div>
+      <p class="sign">With love and best wishes, Ruhan ❤️</p>
+    </article>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

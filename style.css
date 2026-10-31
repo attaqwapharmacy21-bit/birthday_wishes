@@ -1,0 +1,112 @@
+:root{--gold:#f4d58d;--pink:#ff8fc7;--lav:#c9b6ff;--ink:#1a0b3d}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{overflow-x:hidden}
+body{min-height:100vh;min-height:100dvh;font-family:Poppins,sans-serif;color:#fff;
+  background:linear-gradient(135deg,#1a0b3d,#0b1240,#3b1257,#12205a);background-size:300% 300%;animation:bg 18s ease infinite}
+@keyframes bg{50%{background-position:100% 100%}}
+canvas{position:fixed;inset:0;width:100vw;height:100%;pointer-events:none}
+#bg{z-index:0}#confetti{z-index:1}
+#balloons{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+main{position:relative;z-index:2}
+.screen{display:none;width:100%;min-width:0;min-height:100vh;min-height:100dvh;padding:72px 16px 32px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.screen.active{display:flex;animation:in .9s ease both}
+.screen.leave{display:flex;animation:out .6s ease both}
+@keyframes in{from{opacity:0;transform:scale(.94)}}
+@keyframes out{to{opacity:0;transform:scale(1.08);filter:blur(8px)}}
+
+/* Welcome */
+.gift{filter:drop-shadow(0 0 24px rgba(255,143,199,.7));animation:float 3.5s ease-in-out infinite;margin-bottom:18px}
+@keyframes float{50%{transform:translateY(-12px)}}
+h1,h2,.greet,.sign{font-family:'Playfair Display',serif}
+h1{font-size:clamp(2rem,7.5vw,4.2rem);line-height:1.15;max-width:15ch;font-weight:800}
+.reveal span{display:inline-block;margin:0 .12em;opacity:0;transform:translateY(26px);
+  background:linear-gradient(90deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:rise .8s calc(var(--i)*.15s + .3s) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.made{margin-top:20px;font-size:clamp(1.05rem,3.5vw,1.4rem);color:var(--gold);animation:rise 1s 1.5s both}
+.sub{margin:8px 0 30px;font-weight:300;color:var(--lav);animation:rise 1s 1.8s both}
+#openBtn{animation:rise 1s 2.1s both,pulse 2.4s 3s infinite}
+
+/* Buttons */
+.btn{min-height:48px;padding:13px 28px;border:0;border-radius:999px;font:600 1rem Poppins,sans-serif;cursor:pointer;
+  color:var(--ink);background:linear-gradient(90deg,var(--pink),#b38cff);transition:transform .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+.btn.glow{box-shadow:0 0 24px rgba(255,143,199,.55)}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.btn:active{transform:scale(.95)}
+.btn:focus-visible,.music:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@keyframes pulse{50%{box-shadow:0 0 44px rgba(255,143,199,.95)}}
+.music{position:fixed;top:14px;right:14px;z-index:5;min-width:44px;max-width:calc(100vw - 28px);min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.12);backdrop-filter:blur(8px);color:#fff;font:400 .9rem Poppins,sans-serif;cursor:pointer}
+
+/* Card */
+.card{position:relative;width:min(100%,500px);min-width:0;padding:32px 22px 26px;border-radius:34px;
+  background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.28);box-shadow:0 20px 70px rgba(0,0,0,.4),0 0 60px rgba(179,140,255,.25)}
+.card>:not(.sp){animation:up .7s calc(var(--i,0)*.12s + .2s) both}
+@keyframes up{from{opacity:0;transform:translateY(18px) scale(.96)}}
+.card.pop{animation:cardpop .6s}
+@keyframes cardpop{40%{transform:scale(1.03);box-shadow:0 0 90px rgba(244,213,141,.6)}}
+.banner{display:inline-block;margin-bottom:14px;padding:6px 16px;border-radius:99px;background:var(--gold);color:var(--ink);font-weight:600;font-size:.9rem}
+.frame{position:relative;width:136px;height:136px;margin:0 auto 14px;padding:5px;border-radius:50%;
+  background:conic-gradient(var(--gold),var(--pink),var(--lav),var(--gold));box-shadow:0 0 34px rgba(244,213,141,.6)}
+#initial,#photo{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);border-radius:50%}
+#initial{display:grid;place-items:center;background:linear-gradient(135deg,#3b1257,#12205a);font:800 3.2rem 'Playfair Display',serif;color:var(--gold)}
+#photo{object-fit:cover;object-position:center}
+.greet{font-style:italic;font-size:1.3rem;color:var(--pink)}
+h2{font-size:clamp(2rem,9vw,3.1rem);line-height:1.1;margin:2px 0 8px;background:linear-gradient(90deg,var(--gold),#fff,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;overflow-wrap:anywhere}
+.meta{font-weight:300;color:var(--lav);font-size:.95rem}
+.age{margin-top:4px;font-weight:600;font-size:1.1rem}
+.countdown{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:12px 0 0}
+.countdown b{display:block;flex:0 1 54px;min-width:44px;padding:8px 4px;border-radius:14px;background:rgba(255,255,255,.12);font-size:1.2rem}
+.countdown small{display:block;font-weight:300;font-size:.65rem;color:var(--lav)}
+
+/* Cake */
+.cake{display:block;width:min(260px,72%);margin:14px auto 6px;filter:drop-shadow(0 0 22px rgba(255,143,199,.45));animation:float 4s ease-in-out infinite}
+.flame{fill:url(#fl);transform-box:fill-box;transform-origin:50% 100%;animation:flick .45s ease-in-out infinite alternate;transition:opacity .4s}
+.flame:nth-child(even){animation-duration:.6s}
+@keyframes flick{from{transform:scale(1,.9) rotate(-5deg)}to{transform:scale(.9,1.12) rotate(5deg)}}
+.out .flame{animation:none;opacity:0}
+.msg{margin:10px auto 0;max-width:36ch;line-height:1.6;font-weight:300}
+.wish{min-height:1.6em;margin-top:10px;color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic}
+.secret{margin:10px 0;padding:14px;border-radius:16px;background:rgba(244,213,141,.14);border:1px dashed var(--gold);animation:up .6s both}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.actions .btn{max-width:100%;white-space:normal;line-height:1.35;overflow-wrap:anywhere}
+.sign{margin-top:22px;color:var(--gold);font-size:1.05rem}
+.card .meta,.card .age,.card .msg,.card .wish,.card .secret,.card .sign,.card .banner{overflow-wrap:anywhere}
+
+/* Balloons & sparkles */
+.balloon{position:absolute;bottom:-130px;width:44px;height:56px;border-radius:50% 50% 48% 48%;opacity:.75;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.7),var(--c) 55%);animation:balloonUp linear forwards}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:40px;background:rgba(255,255,255,.5)}
+@keyframes balloonUp{0%{transform:translate(0,0)}50%{transform:translate(20px,-65vh)}100%{transform:translate(-12px,-130vh)}}
+.sp{position:absolute;width:12px;height:12px;background:var(--gold);pointer-events:none;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+
+@media (max-width:360px){
+  .card{padding:26px 16px 22px}
+  .frame{width:120px;height:120px}
+  .countdown{gap:6px}
+  .countdown b{flex-basis:48px}
+  .actions .btn{padding-inline:16px}
+}
+
+@media (orientation:landscape) and (max-height:500px){
+  .screen{justify-content:flex-start;padding:68px 12px 20px}
+  .card{padding:22px 18px 18px;border-radius:28px}
+  .frame{width:108px;height:108px;margin-bottom:10px}
+  .greet{font-size:1.15rem}
+  .cake{width:min(190px,42vw);margin:8px auto 2px}
+  .msg{margin-top:4px;line-height:1.45}
+  .wish{min-height:1.4em;margin-top:6px}
+  .actions{margin-top:10px}
+  .sign{margin-top:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal span,.made,.sub,#openBtn,.card>*{opacity:1!important;transform:none!important}
+  .sp,#balloons{display:none}
+}
